@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
-#
-# Push Docker images for latest plugin versions to GHCR.
-#
-# Usage: GHCR_OWNER=myuser ./scripts/ghcr-push.sh
-#
+
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-GHCR_OWNER="${GHCR_OWNER:?GHCR_OWNER must be set (e.g. your GitHub username)}"
+GHCR_OWNER="${GHCR_OWNER:?GHCR_OWNER must be set}"
 GHCR_REGISTRY="${GHCR_REGISTRY:-ghcr.io}"
 
 mapfile -t plugin_dirs < <("$SCRIPT_DIR/find-latest-plugins.sh" "$REPO_ROOT/plugins")

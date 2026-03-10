@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
-#
-# Build Docker images for latest plugin versions and tag them for GHCR.
-#
-# Usage: GHCR_OWNER=myuser ./scripts/ghcr-build.sh
-#
+
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-GHCR_OWNER="${GHCR_OWNER:?GHCR_OWNER must be set (e.g. your GitHub username)}"
+GHCR_OWNER="${GHCR_OWNER:?GHCR_OWNER must be set}"
 GHCR_REGISTRY="${GHCR_REGISTRY:-ghcr.io}"
 DOCKER_BUILDER="${DOCKER_BUILDER:-bufbuild-plugins}"
 
@@ -27,7 +23,6 @@ mapfile -t plugin_dirs < <("$SCRIPT_DIR/find-latest-plugins.sh" "$REPO_ROOT/plug
 echo "Found ${#plugin_dirs[@]} plugins to build"
 
 for dir in "${plugin_dirs[@]}"; do
-    # Extract owner/plugin/version from path: plugins/<owner>/<plugin>/<version>
     rel="${dir#"$REPO_ROOT"/plugins/}"
     owner="$(echo "$rel" | cut -d/ -f1)"
     plugin_name="$(echo "$rel" | cut -d/ -f2)"

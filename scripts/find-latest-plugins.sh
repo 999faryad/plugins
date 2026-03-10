@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-#
-# Find all plugins and their latest versions under plugins/.
-# For each owner/plugin, output only the highest semver directory.
-#
+
 set -euo pipefail
 
 PLUGINS_DIR="${1:-plugins}"
