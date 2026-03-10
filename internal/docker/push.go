@@ -12,7 +12,7 @@ import (
 	"github.com/google/go-containerregistry/pkg/v1/remote"
 	"github.com/google/go-containerregistry/pkg/v1/tarball"
 
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 // Push pushes a docker image for the given plugin to the Docker organization.

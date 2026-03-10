@@ -3,7 +3,7 @@ package docker
 import (
 	"fmt"
 
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 // ImageName returns the name of the plugin's tagged image in the given organization.

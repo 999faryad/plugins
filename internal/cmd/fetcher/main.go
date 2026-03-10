@@ -22,12 +22,12 @@ import (
 	"github.com/spf13/pflag"
 	"golang.org/x/mod/semver"
 
-	"github.com/bufbuild/plugins/internal/docker"
-	"github.com/bufbuild/plugins/internal/fetchclient"
-	"github.com/bufbuild/plugins/internal/git"
-	"github.com/bufbuild/plugins/internal/maven"
-	"github.com/bufbuild/plugins/internal/plugin"
-	"github.com/bufbuild/plugins/internal/source"
+	"github.com/999faryad/plugins/internal/docker"
+	"github.com/999faryad/plugins/internal/fetchclient"
+	"github.com/999faryad/plugins/internal/git"
+	"github.com/999faryad/plugins/internal/maven"
+	"github.com/999faryad/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/source"
 )
 
 var (

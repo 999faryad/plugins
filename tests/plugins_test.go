@@ -25,8 +25,8 @@ import (
 	"golang.org/x/mod/semver"
 	"golang.org/x/mod/sumdb/dirhash"
 
-	"github.com/bufbuild/plugins/internal/plugin"
-	"github.com/bufbuild/plugins/internal/source"
+	"github.com/999faryad/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/source"
 )
 
 const (

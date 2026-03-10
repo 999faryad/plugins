@@ -17,7 +17,7 @@ import (
 	"golang.org/x/mod/semver"
 	"golang.org/x/oauth2"
 
-	"github.com/bufbuild/plugins/internal/source"
+	"github.com/999faryad/plugins/internal/source"
 )
 
 const (

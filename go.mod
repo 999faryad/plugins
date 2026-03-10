@@ -1,4 +1,4 @@
-module github.com/bufbuild/plugins
+module github.com/999faryad/plugins
 
 go 1.26.0
 

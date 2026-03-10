@@ -24,7 +24,7 @@ import (
 
 	"buf.build/go/interrupt"
 
-	"github.com/bufbuild/plugins/internal/release"
+	"github.com/999faryad/plugins/internal/release"
 )
 
 func main() {

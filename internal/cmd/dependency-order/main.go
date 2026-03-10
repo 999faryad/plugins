@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 func main() {

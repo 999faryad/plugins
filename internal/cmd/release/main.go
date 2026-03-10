@@ -29,8 +29,8 @@ import (
 	"github.com/spf13/pflag"
 	"golang.org/x/mod/semver"
 
-	"github.com/bufbuild/plugins/internal/plugin"
-	"github.com/bufbuild/plugins/internal/release"
+	"github.com/999faryad/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/release"
 )
 
 type pluginNameVersion struct {

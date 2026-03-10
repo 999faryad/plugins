@@ -16,7 +16,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/bufbuild/plugins/internal/source"
+	"github.com/999faryad/plugins/internal/source"
 )
 
 func TestUpdatePluginDeps(t *testing.T) {

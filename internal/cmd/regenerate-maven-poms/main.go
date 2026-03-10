@@ -8,7 +8,7 @@ import (
 	"buf.build/go/app"
 	"buf.build/go/app/appcmd"
 
-	"github.com/bufbuild/plugins/internal/maven"
+	"github.com/999faryad/plugins/internal/maven"
 )
 
 func main() {

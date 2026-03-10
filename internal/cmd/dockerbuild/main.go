@@ -19,8 +19,8 @@ import (
 	"golang.org/x/mod/semver"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/bufbuild/plugins/internal/docker"
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/docker"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 // dockerbuild is a helper program used to build plugins from Dockerfiles in an optimized fashion.

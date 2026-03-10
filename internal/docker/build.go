@@ -10,7 +10,7 @@ import (
 	"slices"
 	"time"
 
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 // Build runs a Docker build command for the specified plugin tagging it with the given image name.

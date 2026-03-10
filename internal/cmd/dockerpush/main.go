@@ -8,8 +8,8 @@ import (
 
 	"buf.build/go/interrupt"
 
-	"github.com/bufbuild/plugins/internal/docker"
-	"github.com/bufbuild/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/docker"
+	"github.com/999faryad/plugins/internal/plugin"
 )
 
 // dockerpush automates pushing images built by dockerbuild to a remote registry.

@@ -20,8 +20,8 @@ import (
 	"github.com/google/go-github/v72/github"
 	"golang.org/x/mod/semver"
 
-	"github.com/bufbuild/plugins/internal/plugin"
-	"github.com/bufbuild/plugins/internal/release"
+	"github.com/999faryad/plugins/internal/plugin"
+	"github.com/999faryad/plugins/internal/release"
 )
 
 func main() {
