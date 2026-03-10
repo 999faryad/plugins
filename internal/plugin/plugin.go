@@ -23,7 +23,7 @@ import (
 	"github.com/bufbuild/buf/private/pkg/encoding"
 	"golang.org/x/mod/semver"
 
-	"github.com/bufbuild/plugins/internal/git"
+	"github.com/999faryad/plugins/internal/git"
 )
 
 // Plugin represents metadata (and filesystem path) information about a plugin.
@@ -174,12 +174,18 @@ func Load(path string, basedir string) (*Plugin, error) {
 }
 
 // FilterByPluginsEnv returns matching plugins based on a space separated list of plugins (and optional versions) to include.
+// Special values:
+//   - "all" returns all plugins (all versions).
+//   - "all:latest" returns only the latest version of each plugin.
 func FilterByPluginsEnv(plugins []*Plugin, pluginsEnv string) ([]*Plugin, error) {
 	if pluginsEnv == "" {
 		return nil, nil
 	}
 	if strings.EqualFold(pluginsEnv, "all") {
 		return plugins, nil
+	}
+	if strings.EqualFold(pluginsEnv, "all:latest") {
+		return filterLatestVersions(plugins), nil
 	}
 	includes, err := ParsePluginsEnvVar(pluginsEnv)
 	if err != nil {
@@ -284,6 +290,19 @@ func getLatestPluginVersionsByName(plugins []*Plugin) map[string]string {
 		}
 	}
 	return latestVersions
+}
+
+// filterLatestVersions returns only the latest version of each plugin.
+func filterLatestVersions(plugins []*Plugin) []*Plugin {
+	latestVersionByName := getLatestPluginVersionsByName(plugins)
+	var filtered []*Plugin
+	for _, p := range plugins {
+		if p.PluginVersion == latestVersionByName[p.Name] {
+			log.Printf("including plugin (latest): %s", p.Relpath)
+			filtered = append(filtered, p)
+		}
+	}
+	return filtered
 }
 
 type IncludePlugin struct {
