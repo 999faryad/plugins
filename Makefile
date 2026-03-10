@@ -13,9 +13,6 @@ GOLANGCI_LINT := $(TMP)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 
 GO_TEST_FLAGS ?= -race -count=1
 
-BUF ?= buf
-BUF_PLUGIN_PUSH_ARGS ?= --visibility=public
-
 # GHCR settings - override GHCR_OWNER with your GitHub username/org
 GHCR_OWNER ?= $(shell git config user.name 2>/dev/null)
 GHCR_REGISTRY := ghcr.io
@@ -60,28 +57,9 @@ $(GOLANGCI_LINT):
 	GOBIN=$(abspath $(TMP)) $(GO) install -ldflags="-s -w" github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
 	ln -sf $(abspath $(TMP))/golangci-lint $@
 
-.PHONY: dockerpush
-dockerpush:
-	@$(GO) run ./internal/cmd/dockerpush -org "$(DOCKER_ORG)"
-
 .PHONY: test
 test: build
 	$(GO) test $(GO_TEST_FLAGS) ./...
-
-.PHONY: push
-push: build
-	for plugin in $(PLUGIN_YAML_FILES); do \
-		plugin_dir=`dirname $${plugin}`; \
-		PLUGIN_FULL_NAME=`yq '.name' $${plugin_dir}/buf.plugin.yaml`; \
-		PLUGIN_OWNER=`echo "$${PLUGIN_FULL_NAME}" | cut -d '/' -f 2`; \
-		PLUGIN_NAME=`echo "$${PLUGIN_FULL_NAME}" | cut -d '/' -f 3-`; \
-		PLUGIN_VERSION=`yq '.plugin_version' $${plugin_dir}/buf.plugin.yaml`; \
-		echo "Pushing plugin: $${plugin}"; \
-		if [[ "$(DOCKER_ORG)" = "ghcr.io/bufbuild" ]]; then \
-			$(DOCKER) pull $(DOCKER_ORG)/plugins-$${PLUGIN_OWNER}-$${PLUGIN_NAME}:$${PLUGIN_VERSION} || exit 1; \
-		fi; \
-		$(BUF) beta registry plugin push $${plugin_dir} $(BUF_PLUGIN_PUSH_ARGS) --image $(DOCKER_ORG)/plugins-$${PLUGIN_OWNER}-$${PLUGIN_NAME}:$${PLUGIN_VERSION} || exit 1; \
-	done
 
 .PHONY: clean
 clean:
