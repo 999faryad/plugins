@@ -74,14 +74,11 @@ endif
 
 .PHONY: ghcr-build-latest
 ghcr-build-latest:
-	docker buildx inspect "$(DOCKER_BUILDER)" 2> /dev/null || docker buildx create --use --bootstrap --name="$(DOCKER_BUILDER)" > /dev/null
-	PLUGINS="all:latest" $(GO) run ./internal/cmd/dockerbuild -cache-dir "$(DOCKER_CACHE_DIR)" -org "$(GHCR_ORG)" -- $(DOCKER_BUILD_EXTRA_ARGS) || \
-		(docker buildx rm "$(DOCKER_BUILDER)"; exit 1)
-	docker buildx rm "$(DOCKER_BUILDER)" > /dev/null
+	GHCR_OWNER="$(GHCR_OWNER)" GHCR_REGISTRY="$(GHCR_REGISTRY)" bash scripts/ghcr-build.sh
 
 .PHONY: ghcr-push-latest
 ghcr-push-latest:
-	@PLUGINS="all:latest" $(GO) run ./internal/cmd/dockerpush -org "$(GHCR_ORG)"
+	GHCR_OWNER="$(GHCR_OWNER)" GHCR_REGISTRY="$(GHCR_REGISTRY)" bash scripts/ghcr-push.sh
 
 .PHONY: ghcr-release-latest
 ghcr-release-latest: ghcr-login ghcr-build-latest ghcr-push-latest
